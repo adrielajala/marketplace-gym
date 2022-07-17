@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    /* background-image: linear-gradient(90deg, #2d6a4f, #1b4332); */
+    background-color: #3e756e;
+}
+
+nav {
+    width: 100%;
+    height: 100px;
+    background-color: #3e756e;
+    /* background-image: linear-gradient(90deg, #2d6a4f, #1b4332); */
+}
+
+#logo-container {
+    width: 100%;
+}
+
+nav p {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 30px;
+    line-height: 72px;
+    letter-spacing: 1px;
+    /* padding: 32px 0; */
+    color: #fff;
+}
+
+#account-container {
+    border-radius: 18px;
+    padding: 15px 15px;
+    margin: auto;
+    height: 165px;
+    width: 80%;
+}
+
+#account-container p:nth-of-type(1) {
+    font-size: 22px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+hr:nth-of-type(1) {
+    color: #000;
+    margin: auto;
+    width: 80%;
+    margin-top: 13px;
+}
+
+#hr-box {
+    color: #000;
+    margin: auto;
+    width: 80%;
+    margin-top: 13px; 
+}
+
+.table-head {
+    font-family: 'Roboto', sans-serif;
+    float: left;
+    width: 50%;
+    margin-top: 13px;
+    margin-left: 10%;
+}
+
+.table-row {
+    font-family: 'Roboto', sans-serif;
+    margin-right: 10%;
+    text-align: right;
+    margin-top: 13px;
+}
+
+#user-sells-and-buys {
+    border-radius: 18px;
+    padding: 15px 15px;
+    background-color: #fff;
+    margin: auto;
+    height: auto;
+    width: 80%;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.24);
+    margin-bottom: 50px;
+}
+
+#user-sells-and-buys p:nth-of-type(1) {
+    font-size: 22px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #3e756e;
+}
+
+#account-table {
+    color: white;
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+#account-table td {
+    width: 25%;
+}
+
+#sells-table {
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+#sells-table th {
+    width: 16.7%;
+}
