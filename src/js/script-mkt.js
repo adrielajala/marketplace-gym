@@ -1,3 +1,11 @@
+window.onload = () => {
+    let buyBtns = document.querySelectorAll('.card-button');
+
+    for (let i = 0; i < buyBtns.length; i++) {
+        
+    }
+}
+
 function login() {
     window.location.href = 'login.php';
 }

@@ -98,6 +98,84 @@
 
         }
 
+        public function productInfo($info, $url) {
+
+            require('../db/connection.php');
+
+            $query = $conn -> prepare("SELECT $info FROM products WHERE url_link = ?");
+            $query -> bindParam(1, $url);
+            $query -> execute();
+
+            $data = $query -> fetch(PDO::FETCH_ASSOC);
+
+            return $data["$info"];
+
+        }
+
+        # função pra mostrar as divs com os produtos no marketplace.php
+        public function showAllProducts() {
+
+            require_once('../db/connection.php');
+
+            $bool = 0;
+
+            $query = $conn -> prepare('SELECT * FROM products WHERE sold = ?');
+            $query -> bindParam(1, $bool);
+            $query -> execute();
+            
+            while($data = $query -> fetch(PDO::FETCH_ASSOC)) {
+
+                $queryySellerName = $conn -> prepare('SELECT * FROM users WHERE user_id = ?');
+                $queryySellerName -> bindParam(1, $data['seller_id']);
+                $queryySellerName -> execute();
+                $name = $queryySellerName -> fetch(PDO::FETCH_ASSOC);
+
+                $sellerName = $name['first_name'] . " " . $name['last_name'];
+
+                $pName = $data['product_name'];
+                $pSeller = $sellerName;
+                $pCategory = $data['category'];
+                $pConditionOf = $data['condition_of'];
+                $pPrice = $data['price'];
+                $pDateOfPosting = $data['date_of_posting'];
+                $pUrl = $data['url_link'];
+
+                $dataArray = array(
+                    $pName,
+                    $pSeller,
+                    $pCategory,
+                    $pConditionOf,
+                    $pPrice,
+                    $pDateOfPosting,
+                    $pUrl
+                );
+
+                echo "
+                
+                    <div class='card'>
+                        <div class='card-img'> </div>
+                        <div class='card-info'>
+                            <p class='text-title'> $dataArray[0] </p>
+                            <p class='text-body'> Vendedor: $sellerName </p>
+                        </div>
+                        <div class='card-footer'>
+                            <span class='text-title'> R$ $dataArray[4] </span>
+
+                            <a href='product.php?p=$dataArray[6]'>            
+                                <div class='card-button'>
+                                    <i class='fa-solid fa-cart-shopping'> </i> 
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                
+                ";
+
+            }
+
+
+        }
+
     }
 
 ?>

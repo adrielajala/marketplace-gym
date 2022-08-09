@@ -47,7 +47,13 @@
             Esteiras
         </button>
         <button>
-            Outros
+            Elípticos
+        </button>
+        <button>
+            Escadas
+        </button>
+        <button>
+            Equipamentos
         </button>
 
         <?php
@@ -83,129 +89,21 @@
 
         ?>
 
-    </div>  
-
-    <!-- adicionar depois na parte dos botões: elíptico, equipamentos, escadas -->
-    <!-- https://api.whatsapp.com/send?phone={5519988433009} colocar esse link para redirecionar os clientes para o chat do vendedor -->
-    <!-- https://tinypng.com/developers -->
-    <!-- https://kraken.io/pricing -->
-    <!-- criar wishlist e botão de favorito -->
-    <!-- fazer o negocio de não mostrar o telefone quando o usuario nao estiver logado -->
-    <!-- colocar api de cep -->
-    <!-- confirmar cep para cada item -->
-    <!-- garantia pré-venda e consultoria pré-compra. contratação de manutenção geral ||  -->
-    <!-- ver um jeito de captar se o usuário clicou no 'está interessado' (link do whatsapp) -->
-    <!-- https://www.sintegraws.com.br/api/documentacao-api-receita-federal-cpf.php api de cpf -->
+    </div>
     
     <div id="products-container">
 
-        <div class="card">
-            <div class="card-img"> </div>
-            <div class="card-info">
-                <p class="text-title"> Nome do Produto </p>
-                <p class="text-body"> Descrição </p>
-            </div>
-            <div class="card-footer">
-                <span class="text-title"> R$ 99,99 </span>
+        <?php
 
-                <div class="card-button">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
-            </div>
-        </div>
+            # mostrar os produtos que não estão vendidos
 
-        <div class="card">
-            <div class="card-img"> </div>
-            <div class="card-info">
-                <p class="text-title"> Nome do Produto </p>
-                <p class="text-body"> Descrição </p>
-            </div>
-            <div class="card-footer">
-                <span class="text-title"> R$ 99,99 </span>
+            require('../controller/Functions.php');
 
-                <div class="card-button">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
-            </div>
-        </div>
+            $func = new Functions();
 
-        <div class="card">
-            <div class="card-img"> </div>
-            <div class="card-info">
-                <p class="text-title"> Nome do Produto </p>
-                <p class="text-body"> Descrição </p>
-            </div>
-            <div class="card-footer">
-                <span class="text-title"> R$ 99,99 </span>
+            echo $func -> showAllProducts();
 
-                <div class="card-button">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-img"> </div>
-            <div class="card-info">
-                <p class="text-title"> Nome do Produto </p>
-                <p class="text-body"> Descrição </p>
-            </div>
-            <div class="card-footer">
-                <span class="text-title"> R$ 99,99 </span>
-
-                <div class="card-button">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-img"> </div>
-            <div class="card-info">
-                <p class="text-title"> Nome do Produto </p>
-                <p class="text-body"> Descrição </p>
-            </div>
-            <div class="card-footer">
-                <span class="text-title"> R$ 99,99 </span>
-
-                <div class="card-button">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-img"> </div>
-            <div class="card-info">
-                <p class="text-title"> Nome do Produto </p>
-                <p class="text-body"> Descrição </p>
-            </div>
-            <div class="card-footer">
-                <span class="text-title"> R$ 99,99 </span>
-
-                <div class="card-button">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-img"> </div>
-            <div class="card-info">
-                <p class="text-title"> Nome do Produto </p>
-                <p class="text-body"> Descrição </p>
-            </div>
-            <div class="card-footer">
-                <span class="text-title"> R$ 99,99 </span>
-
-                <div class="card-button">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
+        ?>
 
     <!-- JavaScript -->
     <script src="../src/js/script-mkt.js?2<?= time(); ?>"></script>

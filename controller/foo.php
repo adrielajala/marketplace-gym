@@ -1,6 +1,6 @@
 <?php
 
-/*
+
 
     ### código para adicionar os produtos no banco de dados ###
 
@@ -15,10 +15,9 @@
 
     echo $yes;
 
-    $query = $conn -> prepare("INSERT INTO `products`(`url_link`, `product_name`, `seller_id`, `category`, `condition_of`) VALUES (md5($yes), 'batata', 1, 1, 'good')");
+    $query = $conn -> prepare("INSERT INTO `products`(`url_link`, `product_name`, `seller_id`, `category`, `condition_of`) VALUES (md5($yes), 'biribiri', 1, 1, 'ótimo')");
     $query -> execute();
 
-*/
 
 $curl = curl_init();
 
@@ -50,21 +49,3 @@ if ($err) {
 
 
 ?>
-
-<button onclick='teste()'>
-    aaaaaa
-</button>
-
-<script>
-    function teste() {
-        const options = {
-        method: 'POST',
-        headers: {Accept: 'application/json', 'Content-type': 'application/json'}
-        };
-
-        fetch('https://sandbox.api.pagseguro.com/charges', options)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
-    }
-</script>

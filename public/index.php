@@ -38,6 +38,7 @@
         </div>
 
         <div id="buttons-container">
+            <!-- botões que aparecem na tela de celular -->
             <!-- colocar botão de 'entrar', 'consultoria' e 'manutenção' :) -->
             <button id="marketplace">
                 Marketplace
