@@ -38,7 +38,23 @@
 <body>
 
     <div id="login-container">
-        <p> <b> Login </b> </p>
+
+        <p> <b>
+
+        <?php
+        
+            if (isset($_SESSION['loginFail'])) {
+                if ($_SESSION['loginFail']) {
+                    echo 'E-mail e/ou senha inválidos!';
+                    unset($_SESSION['loginFail']);
+                }
+            } else {
+                echo 'Login';
+            }
+        
+        ?>
+
+        </b> </p>
 
         <form action="../controller/enter.php" method="post">
 

@@ -9,10 +9,11 @@
     }
 
     # cria o objeto das funções para serem usadas para exibirem as informações do usuário
-    require_once('../controller/Functions.php');
+    require('../controller/Functions.php');
     $func = new Functions();
 
-    $sells = $func -> getSells($_SESSION['sessionId']);
+    # $sells = $func -> getSells($_SESSION['sessionId']);
+    $sellCount = $func -> sellCounter($_SESSION['sessionId']);
 
 ?>
 
@@ -35,6 +36,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Faustina&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
@@ -53,6 +55,8 @@
         <p> <?= strtoupper($_SESSION['sessionName']); ?> </p>
 
         <hr>
+
+        <?php /*
 
         <br>
 
@@ -76,18 +80,49 @@
 
             </table>
 
-        </div>
+        </div> */ ?>
 
     </div>
 
     <br> <br>
+
+    <div id="my-sells-container">
+        <div id="active-sells-counter">
+
+            <p> Atualmente, você possui: </p>
+
+            <br>
+
+            <p> <?= $sellCount; ?> </p>
+
+            <br>
+
+            <p> vendas ativas. </p>
+
+        </div>
+
+        <div id="edit-active-sells">
+            <p> Editar Vendas Ativas </p>
+
+            <br>
+
+            <a href="#"> <i class="fa-solid fa-pencil"></i> </a>
+
+            <br>
+        </div>
+    </div>
+
+    
+
+
+    <?php /*
 
     <div id="user-sells-and-buys">
         <p> Minhas Vendas </p>
 
         <hr>
 
-        <!-- exibe todas as rows do banco de dados caso o usuário tenha vendas; caso não, exibe a mensagem que o usuário não tem vendas -->
+        exibe todas as rows do banco de dados caso o usuário tenha vendas; caso não, exibe a mensagem que o usuário não tem vendas -->
         <?php 
         
             if ($sells -> rowCount() > 0) {
@@ -165,7 +200,7 @@
             }
 
         ?>
-    </div>
+    </div> */ ?>
 
 
     <!-- JavaScript -->

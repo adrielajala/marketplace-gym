@@ -32,7 +32,6 @@
 </head>
 <body>
 
-    
     <nav>
         <div id="logo-container">
             <p> <b> Marketplace </b> </p>
@@ -40,26 +39,26 @@
     </nav>
 
     <div id="buttons-container">
-        <button id="testes">
+        <button id="testes" onclick="window.location.href='marketplace.php?filter=1'">
             Bicicletas
         </button>
-        <button>
+        <button onclick="window.location.href='marketplace.php?filter=2'">
             Esteiras
         </button>
-        <button>
+        <button onclick="window.location.href='marketplace.php?filter=3'">
             Elípticos
         </button>
-        <button>
+        <button onclick="window.location.href='marketplace.php?filter=4'">
             Escadas
         </button>
-        <button>
+        <button onclick="window.location.href='marketplace.php?filter=5'">
             Equipamentos
         </button>
 
         <?php
 
             # alterar o botão de 'entrar' caso o usuário já esteja logado
-
+            
             if (isset($_SESSION['logged']) && isset($_SESSION['sessionName'])) {
                 $name = $_SESSION['sessionName'];
                 echo "
@@ -70,6 +69,10 @@
 
                     <button onclick='myAccount()'>
                         Acessar minha conta
+                    </button>
+
+                    <button onclick='createSell()'>
+                        Criar uma Venda
                     </button>
 
                     <button onclick='logout()'>
@@ -97,13 +100,32 @@
 
             # mostrar os produtos que não estão vendidos
 
-            require('../controller/Functions.php');
+            if (isset($_GET['filter']) && $_GET['filter'] > 5) {
 
-            $func = new Functions();
+                header('Location: marketplace.php');
+                die();
 
-            echo $func -> showAllProducts();
+            } else {
+    
+                if (!isset($_GET['filter'])) {
+                    require('../controller/Functions.php');
+    
+                    $func = new Functions();
+            
+                    echo $func -> showAllProducts();
+                } else {
+                    require('../controller/Functions.php');
+    
+                    $func = new Functions();
+    
+                    echo $func -> getProducts($_GET['filter']);
+                }
+    
+            }
 
         ?>
+    
+    </div>
 
     <!-- JavaScript -->
     <script src="../src/js/script-mkt.js?2<?= time(); ?>"></script>
