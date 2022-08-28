@@ -12,9 +12,9 @@
     if ($func -> authenticate($email, $password)) {
         header('Location: ../public/marketplace.php');
     } else {
+        $_SESSION['loginFail'] = TRUE;
         header('Location: ../public/login.php');
         die();
     }
-
 
 ?>

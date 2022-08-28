@@ -98,6 +98,22 @@
 
         }
 
+        # contador de vendas ativas
+        public function sellCounter($userId) {
+            require('../db/connection.php');
+
+            $bool = 0;
+
+            $query = $conn -> prepare("SELECT * FROM products WHERE seller_id = ? AND sold = ?");
+            $query -> bindParam(1, $userId);
+            $query -> bindParam(2, $bool);
+            $query -> execute();
+
+            return $query -> rowCount();
+            die();
+        }
+
+        # pega informações de um produto passado pelos parâmetros
         public function productInfo($info, $url) {
 
             require('../db/connection.php');
@@ -130,7 +146,7 @@
                 $queryySellerName -> execute();
                 $name = $queryySellerName -> fetch(PDO::FETCH_ASSOC);
 
-                $sellerName = $name['first_name'] . " " . $name['last_name'];
+                $sellerName = $name['first_name'];
 
                 $pName = $data['product_name'];
                 $pSeller = $sellerName;
@@ -173,6 +189,106 @@
 
             }
 
+        }
+
+        # função pra fazer o filtro dos produtos no marketplace.php
+        public function getProducts($category) {
+
+            require_once('../db/connection.php');
+
+            $bool = 0;
+
+            $query = $conn -> prepare('SELECT * FROM products WHERE sold = ? AND category = ?');
+            $query -> bindParam(1, $bool);
+            $query -> bindParam(2, $category);
+            $query -> execute();
+            
+            while($data = $query -> fetch(PDO::FETCH_ASSOC)) {
+
+                $queryySellerName = $conn -> prepare('SELECT * FROM users WHERE user_id = ?');
+                $queryySellerName -> bindParam(1, $data['seller_id']);
+                $queryySellerName -> execute();
+                $name = $queryySellerName -> fetch(PDO::FETCH_ASSOC);
+
+                $sellerName = $name['first_name'];
+
+                $pName = $data['product_name'];
+                $pSeller = $sellerName;
+                $pCategory = $data['category'];
+                $pConditionOf = $data['condition_of'];
+                $pPrice = $data['price'];
+                $pDateOfPosting = $data['date_of_posting'];
+                $pUrl = $data['url_link'];
+
+                $dataArray = array(
+                    $pName,
+                    $pSeller,
+                    $pCategory,
+                    $pConditionOf,
+                    $pPrice,
+                    $pDateOfPosting,
+                    $pUrl
+                );
+
+                echo "
+                
+                    <div class='card'>
+                        <div class='card-img'> </div>
+                        <div class='card-info'>
+                            <p class='text-title'> $dataArray[0] </p>
+                            <p class='text-body'> Vendedor: $sellerName </p>
+                        </div>
+                        <div class='card-footer'>
+                            <span class='text-title'> R$ $dataArray[4] </span>
+
+                            <a href='product.php?p=$dataArray[6]'>            
+                                <div class='card-button'>
+                                    <i class='fa-solid fa-cart-shopping'> </i> 
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                
+                ";
+
+            }
+
+        }
+
+        # função pra cadastrar as novas vendas
+        public function newSell($userId, $productName, $category, $productCondition, $brand, $description, $price) {
+            require_once('../db/connection.php');
+
+            $userId = $_SESSION['sessionId'];
+
+            $fetchQuery = $conn -> prepare('SELECT product_id FROM products ORDER BY product_id DESC LIMIT 1');
+            $fetchQuery -> execute();
+            $data = $fetchQuery -> fetch(PDO::FETCH_ASSOC);
+            $data2 = $data['product_id'];
+          
+            $urlLink = $data2 + 1;
+            $new = md5($urlLink);
+                    
+            $query = $conn -> prepare("INSERT INTO products(url_link, product_name, seller_id, category, condition_of, brand, description, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $query -> bindParam(1, $new);
+            $query -> bindParam(2, $productName);
+            $query -> bindParam(3, $userId);
+            $query -> bindParam(4, $category);
+            $query -> bindParam(5, $productCondition);
+            $query -> bindParam(6, $brand);
+            $query -> bindParam(7, $description);
+            $query -> bindParam(8, $price);
+            if ($query -> execute()) {
+                if (!isset($_SESSION['prodSuccess'])) {
+                    $_SESSION['prodSuccess'] = TRUE;
+                    header('Location: ../public/create-sell.php');
+                }
+            } else {
+                if (!isset($_SESSION['prodSuccess'])) {
+                    $_SESSION['prodSuccess'] = FALSE;
+                    header('Location: ../public/create-sell.php');
+                }
+            }
 
         }
 
