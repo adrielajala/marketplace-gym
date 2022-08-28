@@ -114,3 +114,51 @@ hr:nth-of-type(1) {
 #sells-table th {
     width: 16.7%;
 }
+
+#my-sells-container {
+    margin-top: -5em;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+#active-sells-counter {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 1em;
+    padding: 1em 1em;
+    width: 45%;
+    margin-right: 5%;
+    box-shadow: 16px 16px 64px rgba(0, 0, 0, 0.404);
+}
+
+#active-sells-counter p:nth-of-type(1), p:nth-of-type(3) {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}
+
+#active-sells-counter p:nth-of-type(2) {
+    font-size: 60px;
+    font-family: 'Lato', sans-serif;
+}
+
+#edit-active-sells {
+    padding: 1em 1em;
+    background-color: #fff;
+    margin-left: 5%;
+    width: 45%;
+    box-shadow: 16px 16px 64px rgba(0, 0, 0, 0.404);
+    border-radius: 1em;
+    text-align: center;
+}
+
+#edit-active-sells p:nth-of-type(1) {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}
+
+#edit-active-sells i {
+    font-size: 60px;
+}

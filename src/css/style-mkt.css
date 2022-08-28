@@ -8,6 +8,7 @@ body {
     /* background-image: linear-gradient(90deg, #2d6a4f, #1b4332); */
     /* background-color: #3e756e; */
     background-image: url('../img/bg/mkt-bg-computer.svg');
+    /* background-color: #284839; */
 }
 
 nav {
@@ -75,7 +76,7 @@ nav p {
     cursor: pointer;
 }
 
-#buttons-container button:nth-of-type(8):hover {
+#buttons-container button:nth-of-type(9):hover {
     border-color: #0f692f;
     background-color: #d82525;
 }
@@ -178,10 +179,6 @@ a {
 /********************* *********************/
 
 @media only screen and (max-width: 1000px) {
-
-    body {
-        background-image: url('../img/bg/mkt-bg-phone.svg');
-    }
 
     #buttons-container {
         width: 100%;

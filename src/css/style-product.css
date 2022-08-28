@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    /* background-color: #284839; */
+    background-image: url('../img/bg/product-bg-computer.svg');
+}
+
+nav {
+    width: 100%;
+    height: 100px;
+    /* background-image: linear-gradient(90deg, #2d6a4f, #1b4332); */
+}
+
+#logo-container {
+    width: 100%;
+}
+
+nav p {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 30px;
+    letter-spacing: 1px;
+    line-height: 72px;
+    /* padding: 32px 0; */
+    color: #fff;
+}
+
+#product-container {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+#product-container-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 30em;
+}
+
+#product-container-image img {
+    border-radius: 5px;
+    box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.37);
+    width: 15em;
+    height: 15em;
+}
+
+#product-container-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    width: 50%;
+    float: right;
+    height: 30em;
+}
+
+#product-container-text p:nth-of-type(1) {
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+    color: #fff;
+    border-radius: 10px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.247);
+}
+
+#product-container-text p:nth-of-type(2) {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    letter-spacing: .5px;
+    color: #fff;
+}
+
+#product-container-text p:nth-of-type(3) {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    letter-spacing: .5px;
+    color: #fff;
+}
+
+hr {
+    border-color: rgba(255, 255, 255, 0.411);
+    background: rgba(255, 255, 255, 0.411);
+    height: .05em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 20%;
+}
+
+#product-container-text button {
+    background-color: #22c25c;
+    color: white;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    padding: 1em 2em;
+    border-width: 0;
+    border-radius: 25px;
+    cursor: pointer;
+    transition-duration: .3s;
+}
+
+#product-container-text button:hover {
+    background-color: #075E54;
+}
+
+#product-container-text p:nth-of-type(4) {
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+@media only screen and (max-width: 1000px) {
+    #product-container {
+        flex-direction: column;
+    }
+
+    #product-container-image, #product-container-text {
+        float: none;
+        margin-left: 10%;
+        margin-right: 10%;
+        width: auto;
+        height: 20em;
+    }
+    
+}

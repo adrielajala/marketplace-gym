@@ -5,7 +5,8 @@
 body {
     width: 100%;
     height: 100%;
-    background-color: #3e756e;
+    /* background-color: #284839; */
+    background-image: url('../img/bg/mkt-bg-computer.svg');
 }
 
 #login-container {
@@ -41,7 +42,7 @@ body {
     padding: 15px 15px;
     display: block;
     background: none;
-    color: #3e756e;
+    color: #000;
     border-bottom: solid 1px rgba(97, 97, 97, 0.404);
     transition-duration: 0.2s;
 }
