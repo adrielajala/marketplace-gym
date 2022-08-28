@@ -17,3 +17,7 @@ function logout() {
 function myAccount() {
     window.location.href = 'my-account.php';
 }
+
+function createSell() {
+    window.location.href = 'create-sell.php';
+}
