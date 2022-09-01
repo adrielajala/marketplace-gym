@@ -48,6 +48,11 @@
                     echo 'E-mail e/ou senha inválidos!';
                     unset($_SESSION['loginFail']);
                 }
+            } else if (isset($_SESSION['addSuccess'])) {
+                if ($_SESSION['addSuccess']) {
+                    echo 'Usuário cadastrado com sucesso!';
+                    unset($_SESSION['addSuccess']);    
+                }
             } else {
                 echo 'Login';
             }
@@ -68,7 +73,7 @@
 
         </form>
 
-        <button type="reset"> Cadastrar-se </button>
+        <button onclick="window.location.href='sign-up.php'"> Cadastrar-se </button>
 
         </center>
     </div>

@@ -292,6 +292,49 @@
 
         }
 
+        # função para cadastrar novo usuário
+        public function newUser($firstName, $lastName, $email, $password, $cep, $address, $city, $phone, $birthdate) {
+            require_once('../db/connection.php');
+
+            $password = md5($password);
+
+            $searchQuery = $conn -> prepare('SELECT * FROM users WHERE email = ?');
+            $searchQuery -> bindParam(1, $email);
+            $searchQuery -> execute();
+            
+            if ($searchQuery -> rowCount() > 0) {
+                if (!isset($_SESSION['emailFail'])) {
+                    $_SESSION['emailFail'] = TRUE;
+                    header('Location: ../public/sign-up.php');
+                }
+            } else {
+                $addQuery = $conn -> prepare("INSERT INTO users(first_name, last_name, email, password, address, city, cep, phone, date_birth) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $addQuery -> bindParam(1, $firstName);
+                $addQuery -> bindParam(2, $lastName);
+                $addQuery -> bindParam(3, $email);
+                $addQuery -> bindParam(4, $password);
+                $addQuery -> bindParam(5, $address);
+                $addQuery -> bindParam(6, $city);
+                $addQuery -> bindParam(7, $cep);
+                $addQuery -> bindParam(8, $phone);
+                $addQuery -> bindParam(9, $birthdate);
+
+                if ($addQuery -> execute()) {
+                    if (!isset($_SESSION['addSuccess'])) {
+                        $_SESSION['addSuccess'] = TRUE;
+                        header('Location: ../public/login.php');
+                    }
+                } else {
+                    if (!isset($_SESSION['addSuccess'])) {
+                        $_SESSION['addSuccess'] = FALSE;
+                        header('Location: ../public/sign-up.php');
+                    }
+                }
+
+            }
+        
+        }
+
     }
 
 ?>
