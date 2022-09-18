@@ -61,7 +61,39 @@
 
         <div id="product-container-image">
             <!-- colocar o código php pra pegar a imagem da pasta de uploads -->
-            <img src="../src/img/esteira.jpg" alt="" srcset="">
+            <?php
+
+                $pId = $func -> productInfo('product_id', $_GET['p']);
+
+                require('../db/connection.php');                
+                $pathQuery = $conn -> prepare('SELECT * FROM products_photos');
+                #$pathQuery -> bindParam(1, $pId);
+                $pathQuery -> execute(array());
+                $data = $pathQuery -> fetchAll();
+                $count = $pathQuery -> rowCount();
+
+                $photoP = array();
+
+                for ($i = 0; $i < $count; $i++) {
+                    if ($data[$i]['product_id'] == $pId) {
+                        array_push($photoP, $data[$i]['photo_path']);
+                    } else {
+                        
+                    }
+                }
+
+                if ($photoP[0] != null) {
+                    echo "<img src=$photoP[0] alt='' srcset=''>";
+                } else {
+                    echo 'Sem foto.';
+                }
+
+
+                #echo var_dump($data[0]['photo_path']) . $count;
+                #echo $output;
+
+            ?>
+            <!-- <img src="../src/img/esteira.jpg" alt="" srcset=""> -->
         </div>
 
         <div id="product-container-text">

@@ -106,7 +106,7 @@
 
             <br>
 
-            <a href="#"> <i class="fa-solid fa-pencil"></i> </a>
+            <a href="edit-sales.php"> <i class="fa-solid fa-pencil"></i> </a>
 
             <br>
         </div>
