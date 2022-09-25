@@ -135,8 +135,9 @@
 
             $bool = 0;
 
-            $query = $conn -> prepare('SELECT * FROM products WHERE sold = ?');
+            $query = $conn -> prepare('SELECT * FROM products WHERE sold = ? AND deleted = ?');
             $query -> bindParam(1, $bool);
+            $query -> bindParam(2, $bool);
             $query -> execute();
             
             while($data = $query -> fetch(PDO::FETCH_ASSOC)) {
@@ -198,9 +199,10 @@
 
             $bool = 0;
 
-            $query = $conn -> prepare('SELECT * FROM products WHERE sold = ? AND category = ?');
+            $query = $conn -> prepare('SELECT * FROM products WHERE sold = ? AND category = ? AND deleted = ?');
             $query -> bindParam(1, $bool);
             $query -> bindParam(2, $category);
+            $query -> bindParam(3, $bool);
             $query -> execute();
             
             while($data = $query -> fetch(PDO::FETCH_ASSOC)) {
@@ -333,6 +335,57 @@
 
             }
         
+        }
+
+        public function getUserSells($userId) {
+            require('../db/connection.php');
+
+            $bool = 0;
+
+            $query = $conn -> prepare('SELECT * FROM products WHERE seller_id = ? AND sold = ? AND deleted = ?');
+            $query -> bindParam(1, $userId);
+            $query -> bindParam(2, $bool);
+            $query -> bindParam(3, $bool);
+            $query -> execute();
+
+            $i = 1;
+            
+            while ($data = $query -> fetch(PDO::FETCH_ASSOC)) {
+                $pName = $data['product_name'];
+                $pCategory = $data['category'];
+                $pBrand = $data['brand'];
+                $pCondition = $data['condition_of'];
+                $pDesc = $data['description'];
+                $pPrice = $data['price'];
+                $pId = $data['url_link'];
+
+                $link1 = "window.location.href='../controller/confirm-sell.php?product=$pId'";
+                $link2 = "window.location.href='../controller/change-sell.php?product=$pId'";
+                $link3 = "window.location.href='../controller/delete-sell.php?product=$pId'";
+
+                echo "
+                
+                    <div class='sells-container-line1'>
+                        <p class='sells-container-title'> <strong> Venda $i </strong> </p>
+                    </div>
+                    
+                    <div class='sells-container-line2'>
+                        <p> <strong> Produto: </strong> $pName </p> <br>
+                        <p> <strong> Categoria: </strong> $pCategory </p> <br>
+                        <p> <strong> Condição do Produto: </strong> $pCondition </p> <br>
+                        <p> <strong> Marca: </strong> $pBrand </p> <br>
+                        <p> <strong> Descrição: </strong> $pDesc </p> <br>
+                        <p> <strong> Preço: </strong> R$ $pPrice </p> <br>
+
+                        <div class='buttons'>
+                            <button class='btn-edit' onclick=$link1> <i class='fa-solid fa-square-check'></i> Confirmar Venda </button> <button class='btn-edit' onclick=$link2> <i class='fa-solid fa-pen-to-square'></i> Editar Detalhes </button> <button class='btn-edit' onclick=$link3> <i class='fa-solid fa-trash'></i> Excluir Venda </button>
+                        </div> 
+                    </div>
+
+                ";
+
+                $i++;
+            }
         }
 
     }

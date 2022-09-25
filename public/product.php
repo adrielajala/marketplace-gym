@@ -18,8 +18,6 @@
     $product = $func -> productInfo('product_name', $_GET['p']);
 
     ### pegando informações do vendedor
-    require_once('../controller/Functions.php');
-    $func = new Functions();
     $sellerId = $func -> productInfo('seller_id', $_GET['p']);
 
     $sellerPhone = $func -> getInfo($sellerId, 'phone');
@@ -100,11 +98,17 @@
             <p> <strong> <?= $func -> productInfo('product_name', $_GET['p']) ?> </strong> </p>
             <br>
             <p> R$ <?= $func -> productInfo('price', $_GET['p']) ?> </p>
+            <br>
+            <p> <strong> Vendedor: </strong> <?php
+                $sellerId = $func -> productInfo('seller_id', $_GET['p']);
+                $city = $func -> getInfo($sellerId, 'city');
+                echo $func -> getInfo($sellerId, 'first_name') . "<br> <strong> Cidade: </strong> $city";
+            ?> </p>
 
             <hr>
 
             <br> <br>
-            <p> <?= $func -> productInfo('description', $_GET['p']) ?> </p>
+            <p id="product-desc"> <?= $func -> productInfo('description', $_GET['p']) ?> </p>
 
             <br> <br> <br>
 

@@ -122,6 +122,11 @@ hr {
         flex-direction: column;
     }
 
+    #product-container-text button {
+        font-size: 15px;
+        padding: 2em 2em;
+    }
+
     #product-container-image, #product-container-text {
         float: none;
         margin-left: 10%;

@@ -39,16 +39,53 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
 
 </head>
 <body>
+
+    <nav>
+        <div id="logo-container">
+            <p> <b> Minhas Vendas </b> </p>
+        </div>
+    </nav>
+
+    <p class="op-result"> <strong>
+        <?php
+
+            if (isset($_SESSION['sellConfirmed'])) {
+                if ($_SESSION['sellConfirmed']) {
+                    echo '<p class="sell-success"> Venda confirmada com sucesso! </p>';
+                    unset($_SESSION['sellConfirmed']);
+                } else {
+                    echo '<p class="sell-fail"> Houve um erro ao confirmar a venda! </p>';
+                    unset($_SESSION['sellConfirmed']);
+                }
+            } else {
+                echo '';
+            }
+
+            if (isset($_SESSION['deleteConfirmed'])) {
+                if ($_SESSION['deleteConfirmed']) {
+                    echo '<p class="sell-success"> Venda deletada com sucesso! </p>';
+                    unset($_SESSION['deleteConfirmed']);
+                } else {
+                    echo '<p class="sell-fail"> Houve um erro ao deletar a venda! </p>';
+                    unset($_SESSION['deleteConfirmed']);
+                }
+            } else {
+                echo '';
+            }
+                    
+        ?>
+    </strong> </p>
+
 
     <div id="sells-container">
 
         <?php
 
-            
+            $func -> getUserSells($_SESSION['sessionId']);
 
         ?>
 

@@ -131,7 +131,7 @@
 
             <label for="photos"> <strong> Fotos do Produto: </strong> </label>
             <a id="photos-btnx"> <i class="fa-solid fa-cloud-arrow-up"></i> Enviar Fotos </a>
-            <input type="file" name="photos[]" id="photos-btn" onchange="getFileData(this)" multiple>
+            <input type="file" name="photos[]" id="photos-btn" onchange="getFileData(this)" multiple required>
 
             <br> <br> <br>
 
